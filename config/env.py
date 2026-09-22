@@ -12,11 +12,9 @@ load_dotenv(ENV_PATH)
 ENV = os.getenv
 
 # Resolve the database path from the environment, with a repository-local default
-raw_database_path = ENV("DATABASE_PATH")
-if raw_database_path is None:
-    raw_database_path = ENV("DATABASE") or DEFAULT_DATABASE
-    DATABASE_PATH = os.path.join(BASE_DIR, "..", raw_database_path)
-else:
-    DATABASE_PATH = raw_database_path
+raw_database_path = ENV("DATABASE_PATH") or ENV("DATABASE") or DEFAULT_DATABASE
+DATABASE_PATH = raw_database_path
+if not os.path.isabs(DATABASE_PATH):
+    DATABASE_PATH = os.path.join(BASE_DIR, "..", DATABASE_PATH)
 
 os.environ["DATABASE_PATH"] = DATABASE_PATH

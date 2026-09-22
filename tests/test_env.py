@@ -15,7 +15,19 @@ def test_database_path_defaults_when_database_env_missing(monkeypatch):
     assert os.environ["DATABASE_PATH"] == expected_path
 
 
-def test_database_path_preserves_existing_database_path(monkeypatch):
+def test_database_path_resolves_relative_database_path_override(monkeypatch):
+    database_path = "tmp/test-machine-learning.db"
+    monkeypatch.delenv("DATABASE", raising=False)
+    monkeypatch.setenv("DATABASE_PATH", database_path)
+
+    reloaded_env = importlib.reload(env_module)
+
+    expected_path = os.path.join(reloaded_env.BASE_DIR, "..", database_path)
+    assert reloaded_env.DATABASE_PATH == expected_path
+    assert os.environ["DATABASE_PATH"] == expected_path
+
+
+def test_database_path_preserves_absolute_database_path_override(monkeypatch):
     database_path = "/tmp/test-machine-learning.db"
     monkeypatch.delenv("DATABASE", raising=False)
     monkeypatch.setenv("DATABASE_PATH", database_path)
