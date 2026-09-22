@@ -1,7 +1,7 @@
 import re
 from pathlib import Path
 
-class ChunkedTextReader:
+class StreamReader:
     def __init__(self, file_path: str, word_limit: int = 300):
         self.file_path = Path(file_path)
         self.word_limit = word_limit
@@ -46,10 +46,10 @@ class ChunkedTextReader:
 
 #USage example
 #----------------------------------------------------------------------------
-# from chunked_reader import ChunkedTextReader  # adjust filename if needed
+# from chunked_reader import StreamReader  # adjust filename if needed
 #----------------------------------------------------------------------------
 
-# reader = ChunkedTextReader("The_secret_of_Father_Brown.txt", word_limit=5)
+# reader = StreamReader("The_secret_of_Father_Brown.txt", word_limit=5)
 
 # while True:
 #     has_more, chunk = reader.next()

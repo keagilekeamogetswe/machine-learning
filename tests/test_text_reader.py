@@ -1,7 +1,7 @@
 import pytest
 from pathlib import Path
 import tempfile
-from phases.tokenizer.StreamReader import ChunkedTextReader as StreamReader
+from phases.tokenizer.StreamReader import StreamReader
 from tests.test_utils import create_test_file
 
 def test_next_returns_chunks_until_complete():
