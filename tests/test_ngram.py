@@ -16,7 +16,7 @@ def test_ngram_stats_real_sentence():
     stats = tool.getNgramStats()
 
     # Check that common bigrams exist
-    assert "Th" in stats
+    assert "th" in stats
     assert "qu" in stats
     assert "do" in stats
 
@@ -40,8 +40,8 @@ def test_ngram_stats_mixed_case_and_punctuation():
     stats = tool.getNgramStats()
 
     # Check that punctuation doesn't break extraction
-    assert "AI" in stats
-    assert stats["AI"]["size"] == 2
+    assert "ai" in stats
+    assert stats["ai"]["size"] == 2
 
     # 'pow' should exist from "powered"
     assert "pow" in stats
