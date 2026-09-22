@@ -4,4 +4,6 @@
 *.artifact
 report.html
 report.json
-__pycache__/
+*__pycache__/
+.vscode/
+machine-learning.db
