@@ -1,6 +1,6 @@
 class NgramExtractor:
     def __init__(self, prompt: str):
-        self.prompt = prompt.lower()
+        self.prompt = (prompt or "").lower()
 
     def _getGroups(self, word: str, group_size: int) -> list[str]:
         """
